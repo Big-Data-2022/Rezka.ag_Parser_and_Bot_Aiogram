@@ -6,15 +6,15 @@ start_inline = InlineKeyboardMarkup().add(
 
 start_button = ReplyKeyboardMarkup(resize_keyboard=True).add(
     KeyboardButton("Новинка"), 
-    KeyboardButton("Рандомный Фильм"), 
+    KeyboardButton("Рандомная новинка"), 
     KeyboardButton("Все фильмы")
 )
 
 # Новинка
 new_film = ReplyKeyboardMarkup(resize_keyboard = True).add(
-    KeyboardButton("Показать новые 3 фильма"),
-    KeyboardButton("Показать новые 5 фильма"),
-    KeyboardButton("Показать новые 10 фильма"),
+    KeyboardButton("3 фильма"),
+    KeyboardButton("5 фильма"),
+    KeyboardButton("10 фильма"),
     KeyboardButton("Назад в меню"),
     
     )
@@ -25,7 +25,7 @@ new_film = ReplyKeyboardMarkup(resize_keyboard = True).add(
 
 
 ADMIN_BUTTON = InlineKeyboardMarkup().add(
-    InlineKeyboardButton("Обновить парсера", callback_data = "admin_button"),
+    InlineKeyboardButton("Обновить парсер", callback_data = "admin_button"),
 )
 
 

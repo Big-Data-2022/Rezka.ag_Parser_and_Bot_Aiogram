@@ -1,8 +1,4 @@
 import json 
-import random 
-from os import system 
-from time import sleep 
-from datetime import datetime 
 
 import requests
 from bs4 import BeautifulSoup
@@ -10,20 +6,20 @@ from bs4 import BeautifulSoup
 DOMEN = "https://rezka.ag"
 HEADERS = {
 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-"User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36"
+"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
 }
 
 
 def get_html(url, headers = HEADERS):
     response = requests.get(url, headers = headers)
     if response.status_code == 200:
-        return response.content
+        return response.content 
     else:
         return f"Что то пошло не так {response.status_code}"
 
 
-def receive_response(responce):
-    soup = BeautifulSoup(responce, "html.parser")
+def receive_response(response):
+    soup = BeautifulSoup(response, "html.parser")
     all_kino = soup.find("div", class_="b-content__inline").find_all("div", class_="b-content__inline_item")
     
 
@@ -51,11 +47,12 @@ def rezka_parser():
     for i in range(1, count_page+1):
         URL = f"https://rezka.ag/new/page/{i}/"
         
-        responce = get_html(url=URL)
-        soup = receive_response(responce)
+        response = get_html(url=URL)
+        soup = receive_response(response)
         kino.append(soup)
         
     with open("core/json/rezka.json", "w", encoding="UTF-8") as file:
         json.dump(kino, file, indent=4, ensure_ascii=False)
 
-rezka_parser() 
+# print(rezka_parser())
+
